@@ -114,7 +114,7 @@ Even as Kael defeats the creature, the protagonist realizes the voice doesn't be
 
 ## Scene 5: A New Purpose
 
-In a war council with leaders from the surviving kingdoms—fire-dwellers from the Obsidian Peaks, water-mages from the Drowning Gardens, earth-shapers from the Sand Tribes, and wind-speakers from the high plateaus—the protagonist stands before them, no longer an amnesiac wanderer but a force of destiny.
+In a war council with leaders of the surviving kingdoms—fire-dwellers from the Obsidian Peaks, water-mages from the Drowning Gardens, earth-shapers from the Sand Tribes, and wind-speakers from the high plateaus—the protagonist stands before them, no longer an amnesiac wanderer but a force of destiny.
 
 "Malkov seeks to consume all mana, to remake the world in darkness," the protagonist declares, finding strength in the clarity of purpose. "We cannot stop him alone, but together—united in common cause—we can. We must."
 
@@ -129,3 +129,121 @@ The race against darkness has begun.
 ---
 
 **End of Act 2**
+
+---
+
+# Act 3: Fractures and Fire
+
+## Scene 1: The Northern Front
+
+The Sand Tribes march toward the frozen wastes where Malkov's corrupting influence spreads like a plague. Led by Malik, a fierce earth-shaper with stone-hard determination, they face an impossible task: halting the darkness before it reaches the heart of their homeland.
+
+The battle begins at dawn. Entire dunes rise as weapons, earth-spears hurling toward shadowy creatures that defy nature. Malik commands his people with precision, but the darkness is relentless. For every creature they fell, two more emerge from the corrupted ground. By sunset, half his forces are gone, and they're forced to retreat to defensible positions.
+
+In a quiet moment, Malik sends word to the protagonist: *"We hold the line, but we cannot hold it forever. The darkness doesn't tire. It doesn't fear. Send help, or the north falls."*
+
+## Scene 2: The Water War
+
+In the Drowning Gardens, Lyra faces a different challenge. The corruption has begun to infect the very waters she commands, turning them murky and cold. Islands that once floated peacefully begin to plummet into the endless chasm below, carrying entire communities with them.
+
+Lyra discovers something horrifying: the water isn't dying—it's being controlled. Malkov's influence runs deeper than anyone realized. She can feel his presence in every drop, whispering promises of unlimited power to those weak enough to listen.
+
+Some of her followers begin to waver. A faction led by a young mage named Darius argues that they should negotiate with Malkov, that resistance is futile. Lyra opposes him fiercely, but the seeds of doubt have been planted. The alliance fractures from within, and Lyra realizes their greatest enemy might not be Malkov alone, but the doubts that plague her own people.
+
+She sends her own desperate message: *"The water turns against us. We need the Elemental Master. We need him now."*
+
+## Scene 3: The Volcanic Crucible
+
+The Fire-dwellers of the Obsidian Peaks face their own crisis. A massive army of corrupted flame-creatures—twisted versions of the warriors they once were—marches toward them. Kael leads the defense, his legendary skill keeping the darkness at bay, but even he cannot fight forever.
+
+The volcanic fortress shakes with each assault. Lava moats boil with unnatural darkness, and the very stone of the mountains begins to weep shadows. In the depths of the fortress, Kael discovers something that chills him to his core: a hidden chamber containing ancient texts that reveal a terrible truth about the Cataclysm.
+
+The texts speak of not one, but three dark entities sealed away long ago. Malkov was only ever one of them. And if Malkov is breaking free, the others cannot be far behind.
+
+Kael realizes the war they're fighting might be just the beginning of something far worse. He sends an urgent summons to the protagonist: *"What we face is not what we believed. Come to the Obsidian Peaks. You must know the truth before it's too late."*
+
+## Scene 4: The Protagonist's Burden
+
+The protagonist finds himself pulled in three directions at once. Messages arrive from every front, each more desperate than the last. The alliance is crumbling. His allies are losing ground. And Kael's cryptic message about a greater threat looms over everything.
+
+Serah, the elderly mage, sits with him in the Archive. "You cannot be everywhere at once," she says gently. "You must choose where your power is needed most. But know this—every choice you make will save some and doom others."
+
+The protagonist realizes the weight of leadership. He is the Elemental Master, the legendary figure they all look to for salvation. But he is still just one person, and the world is vast and suffering.
+
+He makes a decision: he will journey to the Obsidian Peaks to learn the truth from Kael. Only by understanding the full nature of the threat can he hope to unite the fractured alliance and turn the tide.
+
+But this choice has consequences. Without his presence at the other fronts, things deteriorate quickly. The Sand Tribes fall back further. The Drowning Gardens loses another island. And Lyra, unable to fight both Malkov's corruption and the growing mutiny within her own forces, makes a desperate decision.
+
+## Scene 5: The Revelation
+
+In the depths of the Obsidian Peaks, Kael reveals what he discovered. The ancient texts speak of an entity known as the Void—a primordial darkness that existed before the elements, before the world itself. It was divided and sealed into three vessels: Malkov, and two others whose names have been lost to time.
+
+"The Cataclysm wasn't just a war between us and Malkov," Kael explains, his voice heavy with anguish. "It was the Void itself, fractured and desperate to reunite. We managed to separate the pieces, but we never found the other two vessels. They could be anywhere. They could be anyone."
+
+The protagonist's blood runs cold. "You mean... one of them could be among our allies?"
+
+"Or they could be sleeping, waiting for the moment when Malkov's resurrection awakens them," Kael says. "Either way, we are running out of time."
+
+As they speak, an urgent message arrives. It's from one of Serah's scouts: *"Malkov has revealed himself. He moves toward the Crystalline Archive. And... Lyra's forces are with him. She has surrendered."*
+
+The protagonist's worst fears are realized. The alliance hasn't just fractured—it has been infiltrated. And now, with Lyra's knowledge of the Archive's defenses and secrets, Malkov's path to power is clearer than ever.
+
+Kael and the protagonist rush back toward the Archive, but they know they may be too late.
+
+---
+
+**End of Act 3**
+
+---
+
+# Secret Ending: The Deeper Truth
+
+As the protagonist and Kael race through the darkened lands toward the Crystalline Archive, something shifts within the protagonist's consciousness. Fragments of memory surge forward—not images, but feelings. Sensations of power. The taste of domination. The whisper of countless voices bowing to his will.
+
+He stumbles, and Kael catches him. "What's wrong?"
+
+"I remember," the protagonist breathes. "I remember... but it's not what you told me."
+
+When they reach the Archive, they find it eerily quiet. Serah stands at the entrance, her expression unreadable. The protagonist approaches her slowly, his mind churning with returning memories.
+
+"You knew," he says. It's not a question.
+
+Serah nods. "I have known since the moment you arrived. Your aura, the way you moved—I recognized you, even though you did not recognize yourself."
+
+Kael looks between them, confusion etched across his face. "What are you talking about?"
+
+Serah speaks the truth: "The Void was not divided into three vessels. It was divided into four. Four kings, bound together by oath to maintain balance. Four rulers, each guarding one aspect of the mana. And one of them fell during the Cataclysm—not because of Malkov's ambition, but because of his own."
+
+The protagonist's hands tremble as the final memories crash over him like a tide. He sees himself as he was—not a hero standing beside the Kings, but one of the Kings himself. The Fourth Elemental Monarch, guardian of the Void's Gate—the seal that kept all three fragments imprisoned.
+
+"I didn't fall," the protagonist whispers. "I was imprisoned. They imprisoned me to protect the world from what I knew, from what I had become."
+
+Kael's face goes pale. "No... you can't be..."
+
+"The one who sought to unlock the Gate," the protagonist confirms. "Not Malkov. Me. We were rivals, yes, but in the end, my ambition was far greater. I wanted to harness the Void itself, to command power that transcended the elements. And when Kael and the others realized what I was becoming, they had no choice."
+
+Serah continues: "They sealed you away, fragmented your memories, hid you in the wasteland. But the magic was never meant to last forever. It was designed to break when the world had healed enough, when you might return as something other than you were."
+
+"And Malkov?" the protagonist asks, though he's beginning to understand.
+
+"A pawn," Serah admits. "The real architects of the Cataclysm were those who feared you most. They created Malkov as a false villain, a distraction to keep you focused on an external enemy while you regained your power."
+
+The protagonist looks at Kael—really looks at him—and sees the guilt in the old hero's eyes. "You knew all along."
+
+"Not at first," Kael says quietly. "But yes, toward the end, I suspected. I was ordered to guide you, to help you remember on your own terms. They hoped that if you chose to be different, if you chose to be a hero instead of a tyrant, then perhaps the world could be saved."
+
+The protagonist walks to the Archive's highest tower and gazes out at the world. The war rages in the distance. His allies struggle. Everything is collapsing. And now he understands why.
+
+"Lyra didn't surrender to Malkov," he realizes. "She's working with Serah. With whoever truly orchestrated all of this."
+
+"They're trying to push you to choose," Serah confirms. "To either embrace your old nature and take control by force, or to transcend it entirely and find another way. Your choice will determine not just the fate of the alliance, but the future of the world itself."
+
+The protagonist closes his eyes and feels the weight of the Void within him—that ancient, primordial darkness that is as much a part of him as his own soul. It whispers to him, offering power beyond measure if he would simply let it flow free.
+
+He stands at the edge of a precipice, looking down into an abyss of possibility. Behind him lies everything he has learned about courage and sacrifice. Before him lies everything he once was and could be again.
+
+The war is about to take a turn no one expects. And the true identity of the world's savior—or its doom—has finally awakened.
+
+---
+
+**The Choice Awaits...**
