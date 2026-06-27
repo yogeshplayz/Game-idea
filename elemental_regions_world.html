@@ -1,0 +1,399 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --fire:#C0411A;--fire-bg:#2A0A02;--fire-accent:#E8733A;
+    --water:#1A6B9A;--water-bg:#021828;--water-accent:#4AACDB;
+    --earth:#6B4A1A;--earth-bg:#1A0E02;--earth-accent:#C49A3A;
+    --wind:#3A7A6B;--wind-bg:#021A14;--wind-accent:#7AC4B0;
+    --lightning:#8A4AC0;--lightning-bg:#130A20;--lightning-accent:#C07AE8;
+    --light:#C0A01A;--light-bg:#201800;--light-accent:#F0D04A;
+    --dark:#2A1A4A;--dark-bg:#04010D;--dark-accent:#8A5AC0;
+  }
+  body{background:transparent;font-family:'Crimson Pro',Georgia,serif;color:var(--color-text-primary)}
+  .world-title{
+    text-align:center;
+    font-family:'Cinzel',serif;
+    font-size:13px;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--color-text-secondary);
+    padding:1.5rem 0 0.5rem;
+  }
+  .region-nav{
+    display:flex;flex-wrap:wrap;gap:6px;justify-content:center;
+    padding:0.75rem 1rem 1.25rem;
+  }
+  .nav-btn{
+    font-family:'Cinzel',serif;
+    font-size:10px;letter-spacing:0.12em;
+    padding:5px 12px;border-radius:20px;
+    border:1px solid;
+    cursor:pointer;transition:all 0.2s;
+    background:transparent;
+  }
+  .nav-btn[data-region="fire"]{color:var(--fire-accent);border-color:var(--fire)}
+  .nav-btn[data-region="water"]{color:var(--water-accent);border-color:var(--water)}
+  .nav-btn[data-region="earth"]{color:var(--earth-accent);border-color:var(--earth)}
+  .nav-btn[data-region="wind"]{color:var(--wind-accent);border-color:var(--wind)}
+  .nav-btn[data-region="lightning"]{color:var(--lightning-accent);border-color:var(--lightning)}
+  .nav-btn[data-region="light"]{color:var(--light-accent);border-color:var(--light)}
+  .nav-btn[data-region="dark"]{color:var(--dark-accent);border-color:var(--dark)}
+  .nav-btn.active,.nav-btn:hover{color:#fff}
+  .nav-btn[data-region="fire"].active,.nav-btn[data-region="fire"]:hover{background:var(--fire);border-color:var(--fire)}
+  .nav-btn[data-region="water"].active,.nav-btn[data-region="water"]:hover{background:var(--water);border-color:var(--water)}
+  .nav-btn[data-region="earth"].active,.nav-btn[data-region="earth"]:hover{background:var(--earth);border-color:var(--earth)}
+  .nav-btn[data-region="wind"].active,.nav-btn[data-region="wind"]:hover{background:var(--wind);border-color:var(--wind)}
+  .nav-btn[data-region="lightning"].active,.nav-btn[data-region="lightning"]:hover{background:var(--lightning);border-color:var(--lightning)}
+  .nav-btn[data-region="light"].active,.nav-btn[data-region="light"]:hover{background:var(--light);border-color:var(--light);color:#000}
+  .nav-btn[data-region="dark"].active,.nav-btn[data-region="dark"]:hover{background:var(--dark);border-color:var(--dark)}
+  .region-panel{display:none;padding:0 1rem 2rem}
+  .region-panel.active{display:block}
+  .region-hero{
+    border-radius:12px;
+    padding:2rem 1.75rem 1.5rem;
+    margin-bottom:1.25rem;
+    position:relative;
+    overflow:hidden;
+  }
+  .region-hero::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse at 20% 50%, rgba(255,255,255,0.04) 0%, transparent 60%);
+    pointer-events:none;
+  }
+  .region-emblem{
+    font-size:2.5rem;line-height:1;
+    margin-bottom:0.75rem;
+    display:block;
+    filter:drop-shadow(0 0 12px currentColor);
+  }
+  .region-name{
+    font-family:'Cinzel',serif;
+    font-size:22px;font-weight:700;
+    letter-spacing:0.08em;
+    margin-bottom:2px;
+  }
+  .region-subtitle{
+    font-size:13px;letter-spacing:0.18em;text-transform:uppercase;
+    opacity:0.65;margin-bottom:1rem;
+    font-family:'Cinzel',serif;font-weight:400;
+  }
+  .region-tagline{
+    font-size:16px;font-style:italic;
+    line-height:1.5;opacity:0.9;
+    max-width:520px;
+  }
+  .region-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:10px;
+    margin-bottom:10px;
+  }
+  .info-card{
+    background:var(--color-background-secondary);
+    border:0.5px solid var(--color-border-tertiary);
+    border-radius:10px;padding:1rem 1.1rem;
+  }
+  .info-label{
+    font-family:'Cinzel',serif;
+    font-size:9px;letter-spacing:0.2em;text-transform:uppercase;
+    color:var(--color-text-tertiary);
+    margin-bottom:0.4rem;display:block;
+  }
+  .info-value{font-size:14px;line-height:1.5;color:var(--color-text-primary)}
+  .lore-block{
+    background:var(--color-background-secondary);
+    border:0.5px solid var(--color-border-tertiary);
+    border-radius:10px;padding:1.1rem 1.25rem;
+    font-size:15px;line-height:1.75;
+    color:var(--color-text-secondary);
+  }
+  .lore-block strong{color:var(--color-text-primary);font-weight:600}
+  .traits-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:0.9rem}
+  .trait{
+    font-family:'Cinzel',serif;
+    font-size:9px;letter-spacing:0.15em;text-transform:uppercase;
+    padding:4px 10px;border-radius:20px;
+    border:0.5px solid;
+  }
+  #fire-panel .region-hero{background:linear-gradient(135deg,#1A0500,#3A0D02,#1A0500);color:#F0A070}
+  #fire-panel .region-name{color:#FF7040}
+  #fire-panel .trait{color:#E8733A;border-color:#7A2A0A}
+  #water-panel .region-hero{background:linear-gradient(135deg,#01111E,#02253A,#01111E);color:#80C8E8}
+  #water-panel .region-name{color:#5ABDE0}
+  #water-panel .trait{color:#4AACDB;border-color:#0A3A5A}
+  #earth-panel .region-hero{background:linear-gradient(135deg,#0E0800,#221400,#0E0800);color:#C4A06A}
+  #earth-panel .region-name{color:#D4A84A}
+  #earth-panel .trait{color:#C49A3A;border-color:#5A3A0A}
+  #wind-panel .region-hero{background:linear-gradient(135deg,#011410,#031E18,#011410);color:#8AD4C0}
+  #wind-panel .region-name{color:#6AC4B0}
+  #wind-panel .trait{color:#7AC4B0;border-color:#0A4A3A}
+  #lightning-panel .region-hero{background:linear-gradient(135deg,#0A0414,#16082A,#0A0414);color:#C090E0}
+  #lightning-panel .region-name{color:#C07AE8}
+  #lightning-panel .trait{color:#B070D8;border-color:#4A1A7A}
+  #light-panel .region-hero{background:linear-gradient(135deg,#141000,#201800,#141000);color:#E8CC70}
+  #light-panel .region-name{color:#F0D04A}
+  #light-panel .trait{color:#C0A01A;border-color:#6A5800}
+  #dark-panel .region-hero{background:linear-gradient(135deg,#02010A,#08050F,#02010A);color:#A080C8}
+  #dark-panel .region-name{color:#9A6AC8}
+  #dark-panel .trait{color:#8A5AC0;border-color:#2A1050}
+  .divider{height:0.5px;background:var(--color-border-tertiary);margin:10px 0}
+</style>
+
+<h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Elemental Regions of the World — an interactive guide to seven realms</h2>
+
+<p class="world-title">The Seven Elemental Realms</p>
+
+<nav class="region-nav" role="tablist">
+  <button class="nav-btn active" data-region="fire" role="tab" aria-selected="true">🔥 Fire</button>
+  <button class="nav-btn" data-region="water" role="tab">🌊 Water</button>
+  <button class="nav-btn" data-region="earth" role="tab">🪨 Earth</button>
+  <button class="nav-btn" data-region="wind" role="tab">🌪 Wind</button>
+  <button class="nav-btn" data-region="lightning" role="tab">⚡ Lightning</button>
+  <button class="nav-btn" data-region="light" role="tab">☀️ Light</button>
+  <button class="nav-btn" data-region="dark" role="tab">🌑 Dark</button>
+</nav>
+
+<div id="fire-panel" class="region-panel active" role="tabpanel">
+  <div class="region-hero">
+    <span class="region-emblem">🔥</span>
+    <div class="region-name">The Ashveil Dominion</div>
+    <div class="region-subtitle">Fire Region · The Northern Reaches</div>
+    <div class="region-tagline">"Here the mountains breathe smoke and the rivers run with molten stone — a land that burns not out of rage, but because it knows no other way to live."</div>
+  </div>
+  <div class="region-grid">
+    <div class="info-card">
+      <span class="info-label">Terrain</span>
+      <div class="info-value">Volcanic mountain chains, lava fields, scorched plains, obsidian deserts</div>
+    </div>
+    <div class="info-card">
+      <span class="info-label">Climate</span>
+      <div class="info-value">Perpetually hot, ash-choked skies, rare sulfurous rain, eternal ember-glow at night</div>
+    </div>
+    <div class="info-card">
+      <span class="info-label">Capital</span>
+      <div class="info-value">Cinderholm — a city carved into the caldera of a dormant supervolcano</div>
+    </div>
+    <div class="info-card">
+      <span class="info-label">People</span>
+      <div class="info-value">The Emberi — bronze-skinned, fiercely proud, masters of forging and flame-calling</div>
+    </div>
+  </div>
+  <div class="lore-block">
+    <strong>The Ashveil Dominion</strong> stretches across the northern reaches where the earth's crust is thinnest and the world's inner heat bleeds freely upward. Jagged volcanic peaks pierce ash-grey clouds in every direction, and between them lie seas of cooled lava cracked like ancient skin. Travelers speak of the <strong>Flame Roads</strong> — ancient paths carved through hardened magma flows, glowing faintly underfoot with residual heat. The Emberi people believe fire is not a weapon but a language, and their Pyroglyphic script is literally burned into stone using focused flame. Their warriors carry <strong>cindersteel blades</strong> forged in volcano hearts, and their healers use controlled flame-touch to cauterize wounds and burn away infection.
+    <div class="traits-row">
+      <span class="trait">Volcanic</span><span class="trait">Martial</span><span class="trait">Forge-masters</span><span class="trait">Unbreaking</span><span class="trait">Ancestral fire-rites</span>
+    </div>
+  </div>
+</div>
+
+<div id="water-panel" class="region-panel" role="tabpanel">
+  <div class="region-hero">
+    <span class="region-emblem">🌊</span>
+    <div class="region-name">The Tidesong Expanse</div>
+    <div class="region-subtitle">Water Region · The Southern Reaches</div>
+    <div class="region-tagline">"The south is never still. Even in silence the currents speak, and those who learn to listen find that the sea remembers everything."</div>
+  </div>
+  <div class="region-grid">
+    <div class="info-card">
+      <span class="info-label">Terrain</span>
+      <div class="info-value">Vast ocean archipelago, coral labyrinths, drowned ruins, tidal marshlands</div>
+    </div>
+    <div class="info-card">
+      <span class="info-label">Climate</span>
+      <div class="info-value">Humid, rain-heavy, shifting monsoons, bioluminescent nights, warm currents</div>
+    </div>
+    <div class="info-card">
+      <span class="info-label">Capital</span>
+      <div class="info-value">Pearlspire — a city built on interconnected reef platforms above the deep</div>
+    </div>
+    <div class="info-card">
+      <span class="info-label">People</span>
+      <div class="info-value">The Marathi — lithe, long-lived, born navigators with a gift for tidal prophecy</div>
+    </div>
+  </div>
+  <div class="lore-block">
+    <strong>The Tidesong Expanse</strong> is less a land than a world of water interrupted by islands. Thousands of isles ranging from jungle-crowned mountain peaks to barely-surfaced reefs form a living maze that shifts with the tides. The Marathi have mapped every current, every hidden channel — knowledge passed through generations in their oral tradition of <strong>Wavesong</strong>, a form of singing-navigation where melodies encode routes across vast distances. Beneath the surface lie the <strong>Drowned Cities</strong>, ancient civilizations consumed by rising seas millennia ago, now haunted by tidal spirits the Marathi call <strong>Riptongues</strong>. Their warriors fight using fluid-form combat, moving like water — absorbing force, redirecting strikes, never resisting directly.
+    <div class="traits-row">
+      <span class="trait">Archipelagic</span><span class="trait">Prophetic</span><span class="trait">Seafarers</span><span class="trait">Patient</span><span class="trait">Memory-keepers</span>
+    </div>
+  </div>
+</div>
+
+<div id="earth-panel" class="region-panel" role="tabpanel">
+  <div class="region-hero">
+    <span class="region-emblem">🪨</span>
+    <div class="region-name">The Rootstone Heartlands</div>
+    <div class="region-subtitle">Earth Region · The Central Expanse</div>
+    <div class="region-tagline">"Stand on the Heartlands long enough and you begin to feel it — a slow pulse beneath your feet, old and steady, like the world breathing in its sleep."</div>
+  </div>
+  <div class="region-grid">
+    <div class="info-card">
+      <span class="info-label">Terrain</span>
+      <div class="info-value">Ancient mountain ranges, deep canyon networks, vast fertile plains, crystal cavern systems</div>
+    </div>
+    <div class="info-card">
+      <span class="info-label">Climate</span>
+      <div class="info-value">Four true seasons, rich soil, deep aquifers, protective stone ridges blocking harsh weather</div>
+    </div>
+    <div class="info-card">
+      <span class="info-label">Capital</span>
+      <div class="info-value">Ironveil — built into a mountain that is also the world's largest geode</div>
+    </div>
+    <div class="info-card">
+      <span class="info-label">People</span>
+      <div class="info-value">The Terrath — stocky, enduring, stonemind scholars and agricultural engineers</div>
+    </div>
+  </div>
+  <div class="lore-block">
+    <strong>The Rootstone Heartlands</strong> occupy the world's center — the oldest land, where the first mountains rose and where the earth's memory is deepest. The landscape is one of dramatic contrasts: soaring ridgelines fall into lush valleys, and beneath rolling plains lie the <strong>Crystal Warrens</strong>, a vast network of caverns lined with naturally formed gemstones that pulse with low elemental energy. The Terrath build downward as much as upward — their cities are as deep as they are tall, with the most ancient and sacred chambers buried in living bedrock. They practice <strong>Stonemind</strong>, a discipline of patience and geological awareness that allows trained practitioners to sense mineral veins, underground water, and even fault lines from great distances.
+    <div class="traits-row">
+      <span class="trait">Enduring</span><span class="trait">Scholarly</span><span class="trait">Deep-builders</span><span class="trait">Seasonal</span><span class="trait">Stone-readers</span>
+    </div>
+  </div>
+</div>
+
+<div id="wind-panel" class="region-panel" role="tabpanel">
+  <div class="region-hero">
+    <span class="region-emblem">🌪</span>
+    <div class="region-name">The Galereach Wilds</div>
+    <div class="region-subtitle">Wind Region · The Eastern Frontier</div>
+    <div class="region-tagline">"Nothing is fixed in the east. The dunes shift overnight, the forests lean in one direction, and even the sky seems to be passing through on its way to somewhere else."</div>
+  </div>
+  <div class="region-grid">
+    <div class="info-card">
+      <span class="info-label">Terrain</span>
+      <div class="info-value">Open steppes, towering wind-sculpted mesas, singing dune seas, cliff-face forests</div>
+    </div>
+    <div class="info-card">
+      <span class="info-label">Climate</span>
+      <div class="info-value">Constant winds, dramatic pressure fronts, rare stillness treated as omen, wide sky</div>
+    </div>
+    <div class="info-card">
+      <span class="info-label">Capital</span>
+      <div class="info-value">Vortessa — a city of towers and sky-bridges built to channel rather than resist the wind</div>
+    </div>
+    <div class="info-card">
+      <span class="info-label">People</span>
+      <div class="info-value">The Zephrin — lean, swift-moving, nomadic-hearted, their language shaped by wind patterns</div>
+    </div>
+  </div>
+  <div class="lore-block">
+    <strong>The Galereach Wilds</strong> are defined by motion. Prevailing winds sweep east to west in great spiral currents, carving the mesas into fantastical spires and giving the dune seas their restless geometry. The Zephrin have built their culture around this impermanence — even their permanent structures are designed to be disassembled and relocated, and their philosophy holds that attachment to place is a kind of spiritual weakness. Their <strong>Wind-Scribes</strong> are the world's most sought-after weather-readers and messengers, using kite-like gliders to travel vast distances in days. The rare windless moments known as <strong>Dead Calms</strong> are considered deeply ominous — silence, to the Zephrin, means something is listening.
+    <div class="traits-row">
+      <span class="trait">Nomadic</span><span class="trait">Swift</span><span class="trait">Sky-readers</span><span class="trait">Unattached</span><span class="trait">Message-bearers</span>
+    </div>
+  </div>
+</div>
+
+<div id="lightning-panel" class="region-panel" role="tabpanel">
+  <div class="region-hero">
+    <span class="region-emblem">⚡</span>
+    <div class="region-name">The Stormvault Coast</div>
+    <div class="region-subtitle">Lightning Region · The Western Shore</div>
+    <div class="region-tagline">"The west does not ask permission. The storms arrive unannounced, the thunder speaks before the lightning, and the people have learned to think just as fast."</div>
+  </div>
+  <div class="region-grid">
+    <div class="info-card">
+      <span class="info-label">Terrain</span>
+      <div class="info-value">Storm-battered coastline, charged highlands, glasslands fused by ancient lightning strikes</div>
+    </div>
+    <div class="info-card">
+      <span class="info-label">Climate</span>
+      <div class="info-value">Perpetual electrical storms inland, violent coastal squalls, electromagnetically charged air</div>
+    </div>
+    <div class="info-card">
+      <span class="info-label">Capital</span>
+      <div class="info-value">Arcveil — a city of copper spires and underground conduit networks harvesting storm energy</div>
+    </div>
+    <div class="info-card">
+      <span class="info-label">People</span>
+      <div class="info-value">The Volthari — sharp-minded, intensely fast thinkers, innovators, crackling with restless energy</div>
+    </div>
+  </div>
+  <div class="lore-block">
+    <strong>The Stormvault Coast</strong> is the most electrically active place in the known world. Towering cumulonimbus formations rotate above the western highlands in near-constant rotation, and the <strong>Glasslands</strong> — vast plains of sand fused into translucent sheets by millennia of lightning strikes — are considered sacred ground. The Volthari have turned their dangerous homeland into a power source, developing intricate networks of <strong>Stormconduits</strong> — copper-and-obsidian channels that capture lightning and distribute its energy throughout their cities. Their engineers are the world's most technically brilliant, and their warriors use <strong>charge-arms</strong>: weapons that store and release electrical energy in concentrated bursts. Speed of thought is the culture's highest virtue.
+    <div class="traits-row">
+      <span class="trait">Inventive</span><span class="trait">Electric</span><span class="trait">Rapid-minded</span><span class="trait">Engineers</span><span class="trait">Storm-tamers</span>
+    </div>
+  </div>
+</div>
+
+<div id="light-panel" class="region-panel" role="tabpanel">
+  <div class="region-hero">
+    <span class="region-emblem">☀️</span>
+    <div class="region-name">The Luminarch Isles</div>
+    <div class="region-subtitle">Light Region · The Floating Islands</div>
+    <div class="region-tagline">"To reach the Luminarch Isles you must first believe they are there — for their light bends perception, and only those with clear purpose can find the ascent."</div>
+  </div>
+  <div class="region-grid">
+    <div class="info-card">
+      <span class="info-label">Terrain</span>
+      <div class="info-value">Suspended stone islands, prismatic crystal formations, cascading light-falls, sky meadows</div>
+    </div>
+    <div class="info-card">
+      <span class="info-label">Climate</span>
+      <div class="info-value">Perpetually golden-lit, above the cloud layer, temperature steady, breezes carry warm luminescence</div>
+    </div>
+    <div class="info-card">
+      <span class="info-label">Capital</span>
+      <div class="info-value">Solhaven — built around a crystalline spire that refracts sunlight into rainbow pillars</div>
+    </div>
+    <div class="info-card">
+      <span class="info-label">People</span>
+      <div class="info-value">The Aurelith — pale, luminous-eyed, truth-seeking, long-lived contemplatives and judges</div>
+    </div>
+  </div>
+  <div class="lore-block">
+    <strong>The Luminarch Isles</strong> drift above the cloud layer, tethered to the earth only by ancient chains of hardened light the Aurelith call <strong>Solbindings</strong>. From below, they appear as glowing shapes in the sky — unreachable, almost mythical. From above, they are a paradise of impossible beauty: meadows of silver grass, forests of crystalline trees that chime in the wind, and waterfalls of liquid light that cascade over island edges and dissolve before reaching the earth below. The Aurelith are the world's foremost judges and keepers of truth — their <strong>Luminary Courts</strong> are considered unimpeachable, as the light magic of their home makes deception nearly impossible within island borders. Their greatest power, <strong>Truthcast</strong>, forces clarity of perception on all within its radius.
+    <div class="traits-row">
+      <span class="trait">Transcendent</span><span class="trait">Just</span><span class="trait">Truth-keepers</span><span class="trait">Ancient</span><span class="trait">Light-weavers</span>
+    </div>
+  </div>
+</div>
+
+<div id="dark-panel" class="region-panel" role="tabpanel">
+  <div class="region-hero">
+    <span class="region-emblem">🌑</span>
+    <div class="region-name">The Hollowed Below</div>
+    <div class="region-subtitle">Dark Region · The Underworld</div>
+    <div class="region-tagline">"Those who descend into the Hollowed Below rarely return the same. The dark there is not the absence of light — it is a presence of its own, and it has a long memory."</div>
+  </div>
+  <div class="region-grid">
+    <div class="info-card">
+      <span class="info-label">Terrain</span>
+      <div class="info-value">Vast sub-surface caverns, void-black lakes, petrified forests, shadow-matter plains</div>
+    </div>
+    <div class="info-card">
+      <span class="info-label">Climate</span>
+      <div class="info-value">No sun, no seasons, cold-warm cycling from deep geothermal vents, absolute darkness outside settlements</div>
+    </div>
+    <div class="info-card">
+      <span class="info-label">Capital</span>
+      <div class="info-value">Noctaveil — carved into a cavern so vast its ceiling is mistaken for sky</div>
+    </div>
+    <div class="info-card">
+      <span class="info-label">People</span>
+      <div class="info-value">The Umbrath — adaptive, shadow-sighted, secretive, masterful in illusion and hidden knowledge</div>
+    </div>
+  </div>
+  <div class="lore-block">
+    <strong>The Hollowed Below</strong> exists beneath the surface of the known world — a realm of staggering scale hidden from sunlight. Its caverns dwarf surface nations, and the <strong>Voidlakes</strong> that fill the lowest reaches contain creatures and substances found nowhere else. The Umbrath have thrived here for uncounted generations, developing senses beyond sight and a cultural philosophy centered on the idea that darkness is not emptiness but <strong>potential</strong> — the state before all creation. Their <strong>Shadowweavers</strong> can manipulate shade and darkness like a physical substance, constructing structures from solidified shadow and hiding armies within patches of absolute dark. They are the world's foremost spies, scholars of forbidden knowledge, and keepers of secrets that the surface world would prefer forgotten.
+    <div class="traits-row">
+      <span class="trait">Secretive</span><span class="trait">Subterranean</span><span class="trait">Shadow-weavers</span><span class="trait">Ancient knowledge</span><span class="trait">Adaptive</span>
+    </div>
+  </div>
+</div>
+
+<script>
+const btns=document.querySelectorAll('.nav-btn');
+const panels=document.querySelectorAll('.region-panel');
+btns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const r=btn.dataset.region;
+    btns.forEach(b=>{b.classList.remove('active');b.setAttribute('aria-selected','false')});
+    panels.forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');btn.setAttribute('aria-selected','true');
+    document.getElementById(r+'-panel').classList.add('active');
+  });
+});
+</script>
