@@ -7,10 +7,8 @@ A challenging 2D roguelike dungeon crawler where players navigate procedurally g
 
 ##Areas
 
-```
 <iframe src="file:///C:/Users/yoges/Downloads/elemental_regions_world.html" width="100%" height="500px"></iframe>
 
-```
 
 ## Rules
 1. the game will not follow a fixed route.
