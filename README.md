@@ -5,10 +5,6 @@ the game type will be roguelike .
 ## Game Description
 A challenging 2D roguelike dungeon crawler where players navigate procedurally generated levels with strategic combat and permadeath mechanics. Choose from seven unique fighting classes/elements, each with distinct playstyles and abilities. Every run is unpredictable with randomized enemy combinations, boss variants, and loot drops. Progress through skill unlocks earned during gameplay, manage scarce resources, and uncover multiple ending paths based on your choices and achievements. No two runs are the same.
 
-##Areas
-
-<iframe src="file:///C:/Users/yoges/Downloads/elemental_regions_world.html" width="100%" height="500px"></iframe>
-
 
 ## Rules
 1. the game will not follow a fixed route.
