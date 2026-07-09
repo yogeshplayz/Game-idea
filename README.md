@@ -1,9 +1,9 @@
 # Game-idea
 this repo is for a 2-d game in which I will discuss it's world building.
-the game type will be roguelike .
+the game type will be role playing .
 
 ## Game Description
-A challenging 2D roguelike dungeon crawler where players navigate procedurally generated levels with strategic combat and permadeath mechanics. Choose from seven unique fighting classes/elements, each with distinct playstyles and abilities. Every run is unpredictable with randomized enemy combinations, boss variants, and loot drops. Progress through skill unlocks earned during gameplay, manage scarce resources, and uncover multiple ending paths based on your choices and achievements. No two runs are the same.
+A challenging 2D role playing dungeon crawler where players navigate procedurally generated levels with strategic combat and permadeath mechanics. Choose from seven unique fighting classes/elements, each with distinct playstyles and abilities. Every run is unpredictable with randomized enemy combinations, boss variants, and loot drops. Progress through skill unlocks earned during gameplay, manage scarce resources, and uncover multiple ending paths based on your choices and achievements. No two runs are the same.
 
 
 ## Rules
@@ -16,4 +16,5 @@ A challenging 2D roguelike dungeon crawler where players navigate procedurally g
 7. permutations of enemy combinations and boss variants across runs.
 8. resource scarcity - limited healing potions and consumables per run.
 9. multiple ending paths based on player choices and achievements.
-Dated -12/06/26
+
+Dated -09/07/26
