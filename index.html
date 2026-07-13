@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game-idea - 2D Dungeon Crawler</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 3px solid #ff6b6b;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #ff6b6b;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #ffd93d;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #ffd93d;
+        }
+
+        nav button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        nav button:hover {
+            background: #ffd93d;
+            color: #1a1a2e;
+            transform: scale(1.05);
+        }
+
+        nav button.active {
+            background: #ffd93d;
+            color: #1a1a2e;
+            box-shadow: 0 0 10px rgba(255, 217, 61, 0.5);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section {
+            display: none;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 5px solid #ff6b6b;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: #ffd93d;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+        h3 {
+            color: #ff6b6b;
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .rules-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .rules-list li {
+            background: rgba(255, 107, 107, 0.1);
+            margin: 0.8rem 0;
+            padding: 1rem;
+            border-left: 4px solid #ff6b6b;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .rules-list li:hover {
+            background: rgba(255, 107, 107, 0.2);
+            transform: translateX(5px);
+        }
+
+        .classes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .class-card {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.2) 0%, rgba(255, 217, 61, 0.1) 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 2px solid #ff6b6b;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .class-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(255, 107, 107, 0.3);
+            border-color: #ffd93d;
+        }
+
+        .class-card h4 {
+            color: #ffd93d;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .class-card p {
+            font-size: 0.9rem;
+            color: #b0b0b0;
+        }
+
+        .stats-container {
+            background: rgba(255, 107, 107, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            border: 1px solid #ff6b6b;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.8rem 0;
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+        }
+
+        .stat-label {
+            color: #ffd93d;
+            font-weight: bold;
+        }
+
+        .stat-bar {
+            width: 100px;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-left: 1rem;
+        }
+
+        .stat-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #ffd93d);
+            border-radius: 10px;
+        }
+
+        .feature-card {
+            background: rgba(255, 217, 61, 0.05);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid #ffd93d;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 217, 61, 0.1);
+            transform: translateX(5px);
+        }
+
+        .feature-card strong {
+            color: #ffd93d;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            margin-top: 3rem;
+            border-top: 3px solid #ff6b6b;
+            color: #888;
+        }
+
+        .date {
+            color: #ffd93d;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            nav {
+                gap: 0.5rem;
+            }
+
+            nav button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .classes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>⚔️ GAME-IDEA ⚔️</h1>
+        <p class="subtitle">A 2D Dungeon Crawler RPG Experience</p>
+    </header>
+
+    <nav>
+        <button class="nav-btn active" data-section="overview">Overview</button>
+        <button class="nav-btn" data-section="rules">Rules & Mechanics</button>
+        <button class="nav-btn" data-section="classes">Fighting Classes</button>
+        <button class="nav-btn" data-section="features">Key Features</button>
+    </nav>
+
+    <div class="container">
+        <!-- Overview Section -->
+        <div id="overview" class="section active">
+            <h2>Game Overview</h2>
+            <p>Welcome to an immersive 2D dungeon crawler RPG that challenges your strategic thinking and combat skills!</p>
+            
+            <div class="stats-container">
+                <h3>Game Profile</h3>
+                <div class="stat-item">
+                    <span class="stat-label">Genre:</span>
+                    <span>Role Playing Game (RPG)</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Difficulty:</span>
+                    <span>Challenging</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Permadeath:</span>
+                    <span>Yes - One Chance Per Run</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Replayability:</span>
+                    <span>High - Procedurally Generated</span>
+                </div>
+            </div>
+
+            <h3>Game Description</h3>
+            <p style="margin-top: 1rem;">
+                A challenging 2D role playing dungeon crawler where players navigate procedurally generated levels 
+                with strategic combat and permadeath mechanics. Choose from seven unique fighting classes/elements 
+                and battle your way through endless dungeons. Will you survive?
+            </p>
+        </div>
+
+        <!-- Rules Section -->
+        <div id="rules" class="section">
+            <h2>Rules & Mechanics</h2>
+            <ul class="rules-list">
+                <li><strong>1.</strong> The game will not follow a fixed route - forge your own path</li>
+                <li><strong>2.</strong> Seven fighting classes or elements to choose from</li>
+                <li><strong>3.</strong> Procedurally generated dungeons and levels for replayability</li>
+                <li><strong>4.</strong> Permadeath mechanic - once the character dies, the run is over</li>
+                <li><strong>5.</strong> Random loot drops from defeated enemies and destructible objects</li>
+                <li><strong>6.</strong> Skill progression system unlocked through gameplay rather than fixed leveling</li>
+                <li><strong>7.</strong> Permutations of enemy combinations and boss variants across runs</li>
+                <li><strong>8.</strong> Resource scarcity - limited healing potions and consumables per run</li>
+                <li><strong>9.</strong> Multiple ending paths based on player choices and achievements</li>
+            </ul>
+        </div>
+
+        <!-- Classes Section -->
+        <div id="classes" class="section">
+            <h2>Seven Fighting Classes</h2>
+            <div class="classes-grid">
+                <div class="class-card" onclick="showClassStats('warrior')">
+                    <h4>⚔️ Warrior</h4>
+                    <p>Melee specialist with high defense</p>
+                </div>
+                <div class="class-card" onclick="showClassStats('mage')">
+                    <h4>🔥 Mage</h4>
+                    <p>Master of elemental magic</p>
+                </div>
+                <div class="class-card" onclick="showClassStats('rogue')">
+                    <h4>🗡️ Rogue</h4>
+                    <p>Swift and deadly strikes</p>
+                </div>
+                <div class="class-card" onclick="showClassStats('ranger')">
+                    <h4>🏹 Ranger</h4>
+                    <p>Long-range combat expert</p>
+                </div>
+                <div class="class-card" onclick="showClassStats('paladin')">
+                    <h4>🛡️ Paladin</h4>
+                    <p>Holy warrior with healing</p>
+                </div>
+                <div class="class-card" onclick="showClassStats('necromancer')">
+                    <h4>💀 Necromancer</h4>
+                    <p>Dark magic summoner</p>
+                </div>
+                <div class="class-card" onclick="showClassStats('monk')">
+                    <h4>🥋 Monk</h4>
+                    <p>Balanced martial artist</p>
+                </div>
+            </div>
+
+            <div id="class-stats" class="stats-container" style="display: none; margin-top: 2rem;">
+                <h3 id="selected-class"></h3>
+                <div class="stat-item">
+                    <span class="stat-label">Attack:</span>
+                    <div class="stat-bar">
+                        <div class="stat-bar-fill" id="attack-bar" style="width: 70%;"></div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Defense:</span>
+                    <div class="stat-bar">
+                        <div class="stat-bar-fill" id="defense-bar" style="width: 60%;"></div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Magic:</span>
+                    <div class="stat-bar">
+                        <div class="stat-bar-fill" id="magic-bar" style="width: 50%;"></div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Speed:</span>
+                    <div class="stat-bar">
+                        <div class="stat-bar-fill" id="speed-bar" style="width: 65%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div id="features" class="section">
+            <h2>Key Features</h2>
+            
+            <div class="feature-card">
+                <strong>🎮 Procedurally Generated Content</strong>
+                <p>Every run is unique with randomly generated dungeons, enemy combinations, and boss variants. No two playthroughs are the same!</p>
+            </div>
+
+            <div class="feature-card">
+                <strong>💀 Permadeath Mechanic</strong>
+                <p>The ultimate challenge - once you die, it's game over. Every decision matters when there's only one life to live.</p>
+            </div>
+
+            <div class="feature-card">
+                <strong>⚡ Dynamic Skill Progression</strong>
+                <p>Unlock new abilities and improve skills through gameplay and exploration, not traditional leveling systems.</p>
+            </div>
+
+            <div class="feature-card">
+                <strong>💎 Strategic Loot System</strong>
+                <p>Random loot drops from enemies and breakable objects. Limited healing potions add resource management depth.</p>
+            </div>
+
+            <div class="feature-card">
+                <strong>🌌 Multiple Endings</strong>
+                <p>Your choices and achievements determine your fate. Explore all paths to unlock different endings.</p>
+            </div>
+
+            <div class="feature-card">
+                <strong>🎯 Non-Linear Gameplay</strong>
+                <p>No fixed route to victory. Create your own path through the dungeons and make meaningful decisions.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Game-idea Repository | Last Updated: <span class="date">09/07/26</span></p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">This is an interactive showcase of game concepts and mechanics</p>
+    </footer>
+
+    <script>
+        const classStats = {
+            warrior: { attack: 85, defense: 90, magic: 30, speed: 50 },
+            mage: { attack: 40, defense: 40, magic: 95, speed: 65 },
+            rogue: { attack: 90, defense: 50, magic: 35, speed: 95 },
+            ranger: { attack: 80, defense: 55, magic: 60, speed: 85 },
+            paladin: { attack: 70, defense: 95, magic: 70, speed: 55 },
+            necromancer: { attack: 60, defense: 60, magic: 90, speed: 70 },
+            monk: { attack: 75, defense: 70, magic: 60, speed: 90 }
+        };
+
+        // Navigation functionality
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const section = btn.getAttribute('data-section');
+                
+                // Update active button
+                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Update active section
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                document.getElementById(section).classList.add('active');
+                
+                // Close class stats if switching away from classes
+                if (section !== 'classes') {
+                    document.getElementById('class-stats').style.display = 'none';
+                }
+            });
+        });
+
+        // Class stats display
+        function showClassStats(className) {
+            const stats = classStats[className];
+            const classNames = {
+                warrior: '⚔️ Warrior',
+                mage: '🔥 Mage',
+                rogue: '🗡️ Rogue',
+                ranger: '🏹 Ranger',
+                paladin: '🛡️ Paladin',
+                necromancer: '💀 Necromancer',
+                monk: '🥋 Monk'
+            };
+
+            document.getElementById('selected-class').textContent = classNames[className];
+            document.getElementById('attack-bar').style.width = stats.attack + '%';
+            document.getElementById('defense-bar').style.width = stats.defense + '%';
+            document.getElementById('magic-bar').style.width = stats.magic + '%';
+            document.getElementById('speed-bar').style.width = stats.speed + '%';
+            document.getElementById('class-stats').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
